@@ -1,0 +1,112 @@
+<div class="gamelist box" *ngFor="let game of games" style="width: 90%; padding: 20px; margin: 0 auto; margin-top: 10px; margin-bottom: 10px;">
+    <div style="margin-left: 10px;">
+        <h2><strong> Duración {{game.gameDuration / 60 | number: '1.0-0'}} min {{(game.gameDuration % 60)}} seg</strong></h2>
+        <div class="names">
+            <ul *ngFor="let participantidentitie of game.participantIdentities; let i = index">
+                <li  *ngIf="i<5">{{participantidentitie.player.summonerName}}</li>
+            </ul>
+        </div>
+        <div class="squares">
+            <ul *ngFor="let participant of game.participants; let i = index">
+                <div>
+                    <img *ngIf="i<5" src="{{squareUrl+participant.championId}}/square" style="width: 20px;">
+                </div>
+                
+            </ul>
+        </div>
+        <div class="names" style="margin-left: 15px;">
+            <ul *ngFor="let participantidentitie of game.participantIdentities; let i = index">                
+                <li  *ngIf="i>4">{{participantidentitie.player.summonerName}}</li>
+            </ul>
+        </div>
+        <div class="squares">
+            <ul *ngFor="let participant of game.participants; let i = index">
+                <img *ngIf="i>4" src="{{squareUrl+participant.championId}}/square" style="width: 20px;">
+            </ul>
+        </div>
+        <hr style="clear: both;">   
+    </div>
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li [ngbNavItem]="1">
+        <a ngbNavLink>Estadísticas</a>
+        <ng-template ngbNavContent>
+            <table class="table" style="width: 80%; margin: 0 auto;">
+                <thead>
+                    <th scope="col"><p style="color: #87b6dd; display: inline;">Win</p>/<p style="color: #eb7753;display: inline;">Loose</p></th>
+                    <th scope="col">Player</th>
+                    <th scope="col" placement="top" container="body" ngbTooltip="Kills/Deaths/Assists">KDA</th>
+                    <th scope="col" placement="top" container="body" ngbTooltip="Daño a campeones">DMG</th>
+                    <th scope="col" placement="top" container="body" ngbTooltip="Total de oro ganado">GOLD</th>
+                    <th scope="col" placement="top" container="body" ngbTooltip="Total minions asesinados">CS</th>
+                    <th scope="col" placement="top" container="body" ngbTooltip="Monstruos Neutrales">MN</th>
+                    <th scope="col" placement="top" container="body" ngbTooltip="Score de visión">VS</th>
+                    <th scope="col" placement="top" container="body" ngbTooltip="Control wards comprados">CW</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let participant of game.participants">
+                        <td *ngIf="participant.stats.win"><div style="border: 1px solid #87b6dd; width: 10px; height: 10px; background-color: #87b6dd;"></div></td>
+                        <th *ngIf="!participant.stats.win"><div style="border: 1px solid #eb7753; width: 10px; height: 10px; background-color: #eb7753;"></div></th>
+                        <td>
+                            <img src="{{squareUrl+participant.championId}}/square" style="width: 25px;">
+                        </td>
+                        <td>
+                            {{participant.stats.kills | number: '1.0-2'}}/{{participant.stats.deaths | number: '1.0-2'}}/{{participant.stats.assists | number: '1.0-2'}}
+                        </td>
+                        <td>
+                            {{participant.stats.totalDamageDealtToChampions}}
+                        </td>
+                        <td>
+                            {{participant.stats.goldEarned}}
+                        </td>
+                        <td>
+                            {{participant.stats.totalMinionsKilled}}
+                        </td>
+                        <td>
+                            {{participant.stats.neutralMinionsKilled}}
+                        </td>
+                        <td>
+                            {{participant.stats.visionScore}}
+                        </td>
+                        <td>
+                            {{participant.stats.visionWardsBoughtInGame}}
+                        </td>
+                        
+                    </tr>
+                                     
+                </tbody>
+            </table>
+            <!--    <tr *ngFor="let participantidentitie of game.participantIdentities">
+                        <td>{{participantidentitie.player.summonerName}}</td>
+                    </tr>
+                    <tr *ngFor="let participant of game.participants">
+                        <td>{{participant.stats.totalDamageDealtToChampions}}</td>
+                    </tr>-->
+        </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+        <a ngbNavLink>Resumen</a>
+        <ng-template ngbNavContent>
+            <div style="margin: 0 auto; width: fit-content;">
+                <p class="fourOfour">🐱‍👤No implementado en esta versión🐱‍👤</p>
+            </div>
+        </ng-template>
+        </li>
+    </ul>
+  
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  <hr>
+</div>
+    
+  
+
+<!--<div class="gamelist tile" *ngFor="let game of games">
+    <div  >
+        <ul class="names" *ngFor="let participantidentitie of game.participantIdentities">
+            <li>{{participantidentitie.player.summonerName}}</li>
+        </ul>
+        <ul class="squares" *ngFor="let participant of game.participants">
+            <img src="{{squareUrl+participant.championId}}/square" style="width: 20px;">
+        </ul>
+        <hr>   
+    </div> 
+</div>-->

@@ -1,0 +1,228 @@
+
+<div class="container" *ngIf="loaded" >
+    
+    <section class="box" >
+        <section class="hero is-dark">
+            <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title">
+                    Estadisticas de {{summonerName}}
+                </h1>
+                </div>
+            </div> 
+            
+            <div class="hero-foot">
+                <nav class="tabs is-boxed is-fullwidth is-medium">
+                    <div class="container">
+                    <ul>
+                        <li class="tab is-active" (click)="openTab($event, 'COMBATE')"><a >ESTADÍSTICAS PROMEDIO</a></li>
+                        <li class="tab" (click)="openTab($event, 'DANIOR')"><a >LISTADO DE PARTIDAS</a></li>
+                        <li class="tab" (click)="openTab($event, 'VISION')"><a >OP.GG</a></li>
+                    </ul>
+                    </div>
+                </nav>
+            </div>
+        </section>
+        
+        <div class="container section">
+            <div id="COMBATE" class="content-tab" >
+                <div class="subtitle">Cantidad de partidas de este jugador: {{ammountGames}}</div>
+                <div style="width: 20%; ">
+                    <apx-chart class="chart"
+                    [colors]="chartOptions.options.colors"
+                    [series]="chartOptions.series"
+                    [labels]="chartOptions.labels"
+                    [chart]="chartOptions.chart"
+                    [title]="chartOptions.title"
+                    ></apx-chart> 
+                </div>
+                <div class="div" >
+                    <div class="table-container content">
+                    <table class="table is-bordered is-striped is-narrow is-hoverable">
+                        <p class="subtitle">COMBATE Y DAÑO INFLIGIDO</p>
+                        <tbody>
+                            <tr>
+                                <th>KDA</th>
+                                <td>{{meanStat.kills | number: '1.0-2'}}/{{meanStat.deaths | number: '1.0-2'}}/{{meanStat.assists | number: '1.0-2'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Mayor racha de asesinatos</th>                                
+                                <td>{{meanStat.largestKillingSpree | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Mayor asesinato múltiple</th>
+                                <td>{{meanStat.largestMultiKill | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Total a Campeones</th>
+                                <td>{{meanStat.totalDamageDealtToChampions | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Físico a Campeones</th>
+                                <td>{{meanStat.physicalDamageDealtToChampions | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Mágico a campeones</th>
+                                <td>{{meanStat.magicDamageDealtToChampions | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Verdadero a Campeones</th>
+                                <td>{{meanStat.trueDamageDealtToChampions | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Total Infligido</th>
+                                <td>{{meanStat.totalDamageDealt | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Fisico Infligido</th>
+                                <td>{{meanStat.physicalDamageDealt | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Verdadero Infligido</th>
+                                <td>{{meanStat.trueDamageDealt | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Mayor Golpe Crítico</th>
+                                <td>{{meanStat.largestCriticalStrike | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Total a Torretas</th>
+                                <td>{{meanStat.damageDealtToTurrets | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Total a Objetivos</th>
+                                <td>{{meanStat.damageDealtToObjectives | number: '1.0-0'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="table-container content">
+                    <table class="table is-bordered is-striped is-narrow is-hoverable">
+                        <p class="subtitle">DAÑO RECIBIDO Y CURADO</p>
+                        <tbody>
+                            <tr>
+                                <th>Daño Curado</th>
+                                <td>{{meanStat.totalHeal | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Recibido</th>                                
+                                <td>{{meanStat.totalDamageTaken | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Fisico Recibido</th>
+                                <td>{{meanStat.physicalDamageTaken | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Mágico Recibido</th>
+                                <td>{{meanStat.magicalDamageTaken | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Verdadero Recibido</th>
+                                <td>{{meanStat.trueDamageTaken | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Daño Automitigado</th>
+                                <td>{{meanStat.damageSelfMitigated | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Tiempo de CC a otros</th>
+                                <td>{{meanStat.timeCCingOthers | number: '1.0-0'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table is-bordered is-striped is-narrow is-hoverable">
+                        <p class="subtitle">VISION</p>
+                        <tbody>
+                            <tr>
+                                <th>Puntuación de Visión</th>
+                                <td>{{meanStat.visionScore | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Centinelas Colocados</th>                                
+                                <td>{{meanStat.wardsPlaced | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Centinelas Destruidos</th>
+                                <td>{{meanStat.wardsKilled | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Centinelas de Control Comprados</th>
+                                <td>{{meanStat.visionWardsBoughtInGame | number: '1.0-0'}}</td>
+                    </table>
+                    </div>
+                    <div class="table-container content">
+                    <table class="table is-bordered is-striped is-narrow is-hoverable">
+                        <p class="subtitle">GANANCIAS</p>
+                        <tbody>
+                            <tr>
+                                <th>Oro Ganado</th>
+                                <td>{{meanStat.goldEarned | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Oro Gastado</th>                                
+                                <td>{{meanStat.goldSpent | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>CS Total</th>
+                                <td>{{meanStat.totalMinionsKilled | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Monstruos Asesinados</th>
+                                <td>{{meanStat.neutralMinionsKilled | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Monstruos Asesinados Enemigos</th>
+                                <td>{{meanStat.neutralMinionsKilledEnemyJungle | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Monstruos Asesinados Aliados</th>
+                                <td>{{meanStat.neutralMinionsKilledTeamJungle | number: '1.0-0'}}</td>
+                            </tr>
+                    </table>
+                    <table class="table is-bordered is-striped is-narrow is-hoverable">
+                        <p class="subtitle">MISC</p>
+                        <tbody>
+                            <tr>
+                                <th>Torres Destruidas</th>
+                                <td>{{meanStat.turretKills | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Inhibidores Destruidos</th>                                
+                                <td>{{meanStat.inhibitorKills | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Promedio DobleKill</th>
+                                <td>{{meanStat.doubleKills | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Promedio Triplekill</th>
+                                <td>{{meanStat.tripleKills | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Promedio Cuadrakill</th>
+                                <td>{{meanStat.quadraKills | number: '1.0-0'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Promedio Mayor Tiempo Vivo</th>
+                                <td>{{meanStat.longestTimeSpentLiving | number: '1.0-0'}}</td>
+                            </tr>
+                    </table>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+            <!--3rd tab-->
+            <div id="DANIOR" class="content-tab is-clipped" style="display:none">
+                <app-gamelist [games]="games"></app-gamelist>
+            </div>
+            <div id="VISION" class="content-tab" style="display:none">
+                <div>
+                    <iframe [src]="opgg"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+

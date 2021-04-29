@@ -1,0 +1,15 @@
+.container{
+    margin: 0 auto !important;
+    width: 80% !important;
+}
+.table-container{
+    float: 0 auto;
+}
+table, td, th {
+    text-align: center !important;
+ }
+.imagen{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+} 

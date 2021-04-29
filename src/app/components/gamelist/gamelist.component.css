@@ -1,0 +1,32 @@
+.names{
+    float: left;
+    margin: 5px;
+}
+.squares{    
+    float: left;
+    margin: 5px; 
+}
+.progress{
+    width: 10% !important;
+}
+.fourOfour{
+    margin-top: 30px;
+    animation: bounce 1s infinite alternate !important;
+    -webkit-animation: bounce 1s infinite alternate !important;
+}
+@keyframes bounce {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-15px);
+    }
+}
+@-webkit-keyframes bounce {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-15px);
+    }
+}

@@ -1,0 +1,73 @@
+<div class="container" *ngIf="loaded">
+    <div class="table-container" >
+        <table class="table is-bordered is-striped is-narrow is-hoverable" style="width: 100% !important;">
+            <thead>
+                <tr>
+                    <th>AccountId</th>
+                    <th>profileIcon</th>
+                    <th>summonerName</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>            
+                    <tr *ngFor="let item of player">
+                        
+                            <td>{{item.currentAccountId}}</td>
+                            <td> 
+                                <figure class="image is-64x64 imagen">
+                                    <img  class="is-rounded " src="{{iconUrl+item.profileIcon}}.jpg">
+                                </figure>
+                            </td>
+                            <td>{{item.summonerName}}</td>
+                            <td><button class="button is-info is-light is-outlined" [routerLink]="['/stats/',item.currentAccountId]">Show stats</button></td>
+
+                    </tr>            
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+<!--
+    <a [routerLink]="['/stats/',item.currentAccountId]"></a>
+accountId: 201246407
+currentAccountId: 201246407
+currentPlatformId: "LA2"
+matchHistoryUri: "/v1/stats/player_history/LA2/201246407"
+platformId: "LA2"
+profileIcon: 4404
+summonerId: 4494990
+summonerName: "El Ch0t0"
+<table>
+    <tbody ng-repeat="i in phones">
+      <tr><td>{{i.name}}</td><td>{{$index}}</td></tr>
+      <tr ng-repeat="e in i.details">
+         <td>{{$index}}</td>
+         <td>{{e.foo}}</td>
+         <td>{{e.bar}}</td></tr>
+    </tbody>
+  </table>
+
+<table width="100%" class="table">
+    <thead>
+     <tr>
+      <th ng-repeat="(header, value) in MyRecCollection[0]">{{header}}</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr ng-repeat="row in MyRecCollection | filter:searchText">
+      <td ng-repeat="cell in row">{{cell}}</td>
+     </tr>
+    </tbody>
+   </table>
+
+   <table>
+    <tbody ng-repeat="i in phones">
+      <tr><td>{{i.name}}</td><td>{{$index}}</td></tr>
+      <tr ng-repeat="e in i.details">
+         <td>{{$index}}</td>
+         <td>{{e.foo}}</td>
+         <td>{{e.bar}}</td></tr>
+    </tbody>
+  </table>-->
