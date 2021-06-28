@@ -6,7 +6,7 @@
 ![working app](screenshot03.jpg)
 
 
-# Teamsticks Client 🐱‍👤
+# Teamsticks Viewer 🐱‍👤
 
 _This desktop app is used to view the retrieved data from the League of Legends client._
 
